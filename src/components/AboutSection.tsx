@@ -79,14 +79,17 @@ Kapha (earth & water) maintains structure, strength, and immunity
 
           {/* Right Content - Stats and Image */}
           <div className="animate-slide-in-right">
-            {/* Main Image */}
+            {/* Main Video */}
             <div className="relative mb-8 group">
               <div className="absolute -inset-4 bg-gradient-to-br from-kairali-gold to-kairali-gold-dark rounded-3xl opacity-10 transition-all duration-500 group-hover:opacity-20 group-hover:scale-105"></div>
               <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Kairali Ayurvedic Healing Village"
+                <video
+                  src="/meditation-chamber.mp4"
                   className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
