@@ -18,42 +18,48 @@ const TreatmentsSection = () => {
       title: "Panchakarma",
       description: "The ultimate detoxification and rejuvenation therapy through five cleansing procedures for complete body purification.",
       duration: "14-28 days",
-      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      learnMoreUrl: "https://ayurveda.com/introduction-to-panchakarma/"
     },
     {
       icon: Flower,
       title: "Abhyanga",
       description: "Synchronized full body massage with medicated oils to improve circulation and eliminate toxins.",
       duration: "60-90 mins",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      learnMoreUrl: "https://www.kamaayurveda.in/blog/abhyanga"
     },
     {
       icon: Sun,
       title: "Shirodhara",
       description: "Continuous pouring of medicated oil on forehead for mental peace, clarity and neurological wellness.",
       duration: "45-60 mins",
-      image: "https://krishnendu.org/wp-content/uploads/2018/08/Shirodhara-The-Ayurvedic-Way-of-Relaxation-768x576.jpg"
+      image: "https://krishnendu.org/wp-content/uploads/2018/08/Shirodhara-The-Ayurvedic-Way-of-Relaxation-768x576.jpg",
+      learnMoreUrl: "https://www.forestessentialsindia.com/blog/shirodhara-benefits-and-importance-in-ayurveda.html"
     },
     {
       icon: TreePine,
       title: "Pizhichil",
       description: "Royal treatment combining oil massage with warm medicated oil bath for muscular and joint disorders.",
       duration: "60-90 mins",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      learnMoreUrl: "https://www.jeevanya.co.in/treatments/pizhichil/"
     },
     {
       icon: Zap,
       title: "Udvartana",
       description: "Powder massage therapy for weight reduction, improving skin texture and eliminating cellulite.",
       duration: "45-60 mins",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      learnMoreUrl: "https://amrutam.co.in/blogs/daily-reads/discovering-udvartana-ayurvedic-beauty-and-wellness-ritual"
     },
     {
       icon: Moon,
       title: "Njavarakizhi",
       description: "Therapeutic massage with medicated rice bolus for neurological disorders and body strengthening.",
       duration: "60-75 mins",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      learnMoreUrl: "https://omasra.com/pages/njavarakizhi"
     }
   ];
 
@@ -115,12 +121,14 @@ const TreatmentsSection = () => {
                 <p className="text-kairali-brown/80 mb-4 leading-relaxed group-hover:text-kairali-brown transition-colors duration-300">
                   {treatment.description}
                 </p>
-                <Button 
-                  variant="outline" 
-                  className="w-full border-kairali-gold text-kairali-gold hover:bg-kairali-gold hover:text-kairali-brown transition-all duration-500 font-semibold group-hover:scale-105 hover:shadow-lg"
-                >
-                  <span className="group-hover:animate-pulse">Learn More</span>
-                </Button>
+                <a href={treatment.learnMoreUrl} className="block">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-kairali-gold text-kairali-gold hover:bg-kairali-gold hover:text-kairali-brown transition-all duration-500 font-semibold group-hover:scale-105 hover:shadow-lg"
+                  >
+                    <span className="group-hover:animate-pulse">Learn More</span>
+                  </Button>
+                </a>
               </CardContent>
             </Card>
           ))}

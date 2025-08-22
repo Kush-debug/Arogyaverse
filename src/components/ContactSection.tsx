@@ -4,8 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import { useState } from 'react';
 
 const ContactSection = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
   const contactInfo = [
     {
       icon: MapPin,
@@ -42,21 +46,45 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setSubmitMessage('');
+    
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+    
     try {
+      console.log('Sending payload:', payload);
+      
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
+      
+      console.log('Response status:', res.status);
+      console.log('Response headers:', res.headers);
+      
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error('Error response:', errorText);
+        throw new Error(`Server error: ${res.status} - ${errorText}`);
+      }
+      
       const json = await res.json();
-      if (!res.ok) throw new Error(json?.errors?.join(', ') || 'Failed');
-      alert('Inquiry sent successfully!');
+      console.log('Success response:', json);
+      
+      setSubmitStatus('success');
+      setSubmitMessage('Thank you! Your inquiry has been sent successfully. We will contact you within 24 hours.');
       form.reset();
+      
     } catch (err: any) {
-      alert(err.message || 'Something went wrong');
+      console.error('Submission error:', err);
+      setSubmitStatus('error');
+      setSubmitMessage(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -204,9 +232,26 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-[1.02]">
-                  Send Inquiry
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  disabled={isSubmitting}
+                  className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-4 rounded-lg text-lg font-semibold transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Inquiry'}
                 </Button>
+
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 text-center">{submitMessage}</p>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 text-center">{submitMessage}</p>
+                  </div>
+                )}
 
                 <p className="text-sm text-gray-500 text-center">
                   * Required fields. Your privacy is important to us and we will never share your information.
