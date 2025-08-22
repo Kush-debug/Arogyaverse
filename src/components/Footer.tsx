@@ -6,14 +6,14 @@ const Footer = () => {
     { name: 'About Arogyaverse', href: '#about' },
     { name: 'Ayurvedic Treatments', href: '#treatments' },
     { name: 'Medical Consultation', href: '#wellness' },
-    { name: 'Our Team', href: 'http://localhost:8081/' }
+    { name: 'Our Team', href: 'https://our-team-vh31.vercel.app/' }
   ];
 
   const treatments = [
-    { name: 'Panchakarma', href: '#' },
-    { name: 'Abhyanga', href: '#' },
-    { name: 'Shirodhara', href: '#' },
-    { name: 'Pizhichil', href: '#' }
+    { name: 'Panchakarma', href: 'https://ayurveda.com/introduction-to-panchakarma/' },
+    { name: 'Abhyanga', href: 'https://www.kamaayurveda.in/blog/abhyanga' },
+    { name: 'Shirodhara', href: 'https://www.forestessentialsindia.com/blog/shirodhara-benefits-and-importance-in-ayurveda.html' },
+    { name: 'Pizhichil', href: 'https://www.jeevanya.co.in/treatments/pizhichil/' }
   ];
 
   const socialLinks = [
